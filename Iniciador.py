@@ -100,7 +100,8 @@ for remote_url, local_file in zip(remote_urls, local_files):
     except:
         print ("No se encontro el siguiente URL: " + remote_url)
 
-my_dir = "D:\\MSI\\Documentos\\Python\\IDEPRO IFD" # Ruta de archivos ZIP
+#C:\Users\soporte.IDEPRO\Documents\Proyecto\IDEPRO-ASFI
+my_dir = "C:\\Users\\soporte.IDEPRO\\Documents\\Proyecto\\IDEPRO-ASFI" # Ruta de archivos ZIP
 files_Zip = [file_BDR_EF, file_BMU_EF, file_BPY_EF, file_EFV_EF, file_COO_EF, file_IFD_EF, file_BDR_I, file_BMU_I, file_BPY_I, file_EFV_I, file_COO_I, file_IFD_I]
 excel_EF = ["", "", "","", "", ""]
 excel_I = ["", "", "","", "", ""]
@@ -1083,7 +1084,7 @@ else:
         info.drop(index=info.index, inplace=True)
 
     # Configuración de la conexión a MySQL
-    engine = create_engine('mysql+mysqlconnector://root:Hels1962*@localhost/Datos') 
+    engine = create_engine('mysql+mysqlconnector://root:Idepro159*@localhost/Datos') 
 
     # Nombre del archivo de texto para guardar los nombres de los archivos ya subidos a MySQL
     archivo_subidos = "subidos.txt"
