@@ -11,10 +11,10 @@ import os
 import re
 
 now = datetime.now()
-# Month = now.month
-Month = 3
-# Year = now.year
-Year = 2023
+Month = now.month
+#Month = 3
+Year = now.year
+#Year = 2023
 # print (Year)
 # print (Month)
 file_BDR_EF = "BDR_EstadosFinancieros.zip"
@@ -145,6 +145,11 @@ else:
         excel1 = pd.read_excel(excel_I[name], header=None)
         info = pd.DataFrame(excel1)
         pd.set_option('display.max_rows', None)
+        # Encontrar la columna que contiene la palabra "TOTAL SISTEMA"
+        ultima_cols = info.columns[info.apply(lambda x: x.astype(str).str.contains('TOTAL SISTEMA')).any()]
+        col_idx = info.columns.get_loc(ultima_cols[0])
+        info = info.iloc[:, :col_idx+1]
+        #print (info)
         tipo_indentidad = info.loc[0][0]
         if tipo_indentidad == 'BANCOS DE DESARROLLO PRODUCTIVO':
             info = info.replace('TOTAL SISTEMA', 'TSBDR')
@@ -907,12 +912,37 @@ else:
             return '460.00'
         elif Columna.endswith('(=) RESULTADO NETO DE LA GESTIÓN'):
             return 'CC0.08 - 460.00'
+        elif re.search(r'\bDOCUMENTOS DE COBRO INMEDIATO\b', Columna):
+            return '117.00'
+        elif re.search(r'\bObligaciones con bancos y otras entidades del país a plazo\b', Columna):
+            return '235.00'
+        elif re.search(r'\bObligaciones con bancos y otras entidades del país a plazo\b', Columna):
+            return '235.00'
+        elif re.search(r'\bPAGARÉS BURSÁTILES\b', Columna):
+            return '263.00'
+        elif re.search(r'\bBOLETAS DE GARANTÍA NO CONTRAGARANTIZADAS\b', Columna):
+            return '623.00'
+        elif re.search(r'\bGARANTÍAS TRANSFERIDAS PARA TITULARIZACIÓN\b', Columna):
+            return '92.00'
+        elif re.search(r'\bOPERACIONES DE COMPRA Y VENTA A FUTURO DE MONEDA EXTRANJERA\b', Columna):
+            return '867.00'
+        elif re.search(r'\bCUENTAS ACREEDORAS DE LOS PATRIMONIOS AUTÓNOMOS CONSTITUIDOS CON RECURSOS PRIVADOS\b', Columna):
+            return '970.00'
+        elif re.search(r'\bCUENTAS ACREEDORAS DE LOS PATRIMONIOS AUTÓNOMOS CONSTITUIDOS CON RECURSOS DEL ESTADO\b', Columna):
+            return '980.00'
+        elif re.search(r'\bPrevisiones por constituir sujetas a cronograma\b', Columna):
+            return '869.90'
 
     for name in range(len(excel_EF)):
         # Modificar los excels descargados INDICADORES
         excel2 = pd.read_excel(excel_EF[name], header=None)
         info = pd.DataFrame(excel2)
         pd.set_option('display.max_rows', None)
+        # Encontrar la columna que contiene la palabra "TOTAL SISTEMA"
+        ultima_cols = info.columns[info.apply(lambda x: x.astype(str).str.contains('TOTAL SISTEMA')).any()]
+        col_idx = info.columns.get_loc(ultima_cols[0])
+        info = info.iloc[:, :col_idx+1]
+        #print (info)
 
         tipo_indentidad = info.loc[0][0]
         if tipo_indentidad == 'BANCOS DE DESARROLLO PRODUCTIVO':
@@ -1130,3 +1160,5 @@ else:
     # eliminar archivos en excel_EF
     for archivo in excel_EF:
         os.remove(archivo)
+
+    print ("TERMINE!")
