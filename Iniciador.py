@@ -11,10 +11,10 @@ import os
 import re
 
 now = datetime.now()
-Month = now.month
-#Month = 3
-Year = now.year
-#Year = 2023
+#Month = now.month
+Month = 6
+#Year = now.year
+Year = 2023
 # print (Year)
 # print (Month)
 file_BDR_EF = "BDR_EstadosFinancieros.zip"
