@@ -11,10 +11,10 @@ import os
 import re
 
 now = datetime.now()
-Month = now.month
-#Month = 3
-Year = now.year
-#Year = 2023
+#Month = now.month
+Month = 6
+#Year = now.year
+Year = 2023
 # print (Year)
 # print (Month)
 file_BDR_EF = "BDR_EstadosFinancieros.zip"
@@ -1114,7 +1114,7 @@ else:
         info.drop(index=info.index, inplace=True)
 
     # Configuración de la conexión a MySQL
-    engine = create_engine('mysql+mysqlconnector://root:Idepro159*@localhost/Datos') 
+    engine = create_engine('mysql+mysqlconnector://root:Idepro.159*@localhost/Datos') 
 
     # Nombre del archivo de texto para guardar los nombres de los archivos ya subidos a MySQL
     archivo_subidos = "subidos.txt"
