@@ -12,7 +12,11 @@ import re
 
 now = datetime.now()
 Month = now.month
+<<<<<<< HEAD
 #Month = 7
+=======
+#Month = 6
+>>>>>>> cb7c84ddf7ba26f5fc00852f7e38852ff0c2f83b
 Year = now.year
 #Year = 2023
 # print (Year)
